@@ -14,9 +14,9 @@ const studentGroupSchema = new Schema({
         type: Number,
         required: true
     },
-    users: [{
+    reservation: [{
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "Reservation"
     }]
 })
 

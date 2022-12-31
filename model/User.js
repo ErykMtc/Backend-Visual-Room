@@ -34,19 +34,9 @@ const userSchema = new Schema({
         type: Number
     },
     reservation: [{
-        datestart: {
-            type: Date
-        }, 
-        dateend: {
-            type: Date
-        },
-        room: {
+        reservid: {
             type: Schema.Types.ObjectId,
-            ref: "Room"
-        },
-        studentgroup: {
-            type: Schema.Types.ObjectId,
-            ref: "StudentGroup"
+            ref: "Reservation"
         }    
     }]
 

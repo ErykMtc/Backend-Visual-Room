@@ -44,6 +44,7 @@ app.use('/employees', require('./routes/api/employees'));
 app.use('/users', require('./routes/api/users'));
 app.use('/room', require('./routes/api/rooms'));
 app.use('/student', require('./routes/api/students'));
+app.use('/reservation', require('./routes/api/reservations'))
 
 // app.all('*', (req, res) => {
 //     res.status(404);

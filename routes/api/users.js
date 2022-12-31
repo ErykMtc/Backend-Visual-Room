@@ -14,8 +14,5 @@ router.route('/search/:id')
 router.route('/reserv')
     .get(userController.getAllReservUser);
 
-router.route('/reserv/:id')
-    .post(userController.handleNewReservation);
-
 
 module.exports = router;

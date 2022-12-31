@@ -10,9 +10,9 @@ const roomSchema = new Schema({
         type: String,
         required: true
     },
-    users: [{
+    reservation: [{
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "Reservation"
     }]
 })
 
