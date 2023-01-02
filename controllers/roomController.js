@@ -7,12 +7,13 @@ const getAllRooms = async (req, res) => {
 }
 
 const createNewRoom = async (req, res) => {
-    if (!req?.body?.capacity || !req?.body?.type) {
+    if (!req?.body?.capacity || !req?.body?.type || !req?.body?.name) {
         return res.status(400).json({ 'message': 'Capacity and type are required' });
     }
 
     try {
         const result = await Room.create({
+            name: req.body.name,
             capacity: req.body.capacity,
             type: req.body.type
         });
@@ -34,6 +35,7 @@ const updateRoom = async (req, res) => {
     }
     if (req.body?.capacity) room.capacity = req.body.capacity;
     if (req.body?.type) room.type = req.body.type;
+    if (req.body?.name) room.name = req.body.name;
     const result = await room.save();
     res.json(result);
 }
