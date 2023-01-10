@@ -12,6 +12,7 @@ const userSchema = new Schema({
             default: 2001
         },
         Editor: Number,
+        Worker: Number,
         Admin: Number
     },
     password: {
@@ -34,12 +35,9 @@ const userSchema = new Schema({
         type: Number
     },
     reservation: [{
-        reservid: {
-            type: Schema.Types.ObjectId,
-            ref: "Reservation"
-        }    
+        type: Schema.Types.ObjectId,
+        ref: "Reservation"
     }]
-
 });
 
 module.exports = mongoose.model('User', userSchema);

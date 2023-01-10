@@ -14,5 +14,8 @@ router.route('/search/:id')
 router.route('/reserv')
     .get(userController.getAllReservUser);
 
+router.route('/update')
+    .put(userController.updateUserRole);
+
 
 module.exports = router;

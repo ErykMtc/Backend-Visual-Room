@@ -1,4 +1,7 @@
+const User = require('../model/User');
 const Room = require('../model/Room');
+const Reserv = require('../model/Reservation');
+const Student = require('../model/StudentGroup')
 
 const getAllRooms = async (req, res) => {
     const rooms = await Room.find();
@@ -47,7 +50,32 @@ const deleteRoom = async (req, res) => {
     if (!room) {
         return res.status(204).json({ "message": `No room matches ID ${req.body.id}.` });
     }
-    const result = await room.deleteOne(); //{ _id: req.body.id }
+    
+    const arr = await Reserv.find({room: req.body.id}, '_id user studentgroup userReserv');
+    console.log(arr);
+
+    const result = await room.deleteOne().then((result) => {
+        Reserv.deleteMany({ room: result._id }).then((result) => {
+                    // console.log(result);
+                    // console.log(result._id)
+                    });
+            }
+        );
+
+        var normalid = arr.map(({ _id }) => _id);
+
+        var userid = arr.map(({ user }) => user);
+
+        var studentid = arr.map(({ studentgroup }) => studentgroup);
+
+        var ruser = arr.map(({ userreserv }) => userreserv);
+
+       const rrr = await User.updateMany( {_id: { $in: userid }}, { $pullAll: {reservation: normalid } } );
+        await Student.updateMany( {_id: studentid}, { $pullAll: {reservation: normalid } } );
+        await User.updateMany( {_id: ruser}, { $pullAll: {reservation: normalid } } );
+
+        // console.log("aaa", rrr);
+
     res.json(result);
 }
 

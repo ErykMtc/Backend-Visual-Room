@@ -11,7 +11,12 @@ router.route('/')
     .delete(reservController.deleteReserv);
 
 router.route('/:id')
-.get(reservController.getReserv);
+    .get(reservController.getReserv);
 
+router.route('/user/:id')
+    .get(reservController.getUserReserv);
 
-module.exports = router;
+router.route('/create')
+    .post(reservController.verifyReserv);
+
+module.exports = router; 
