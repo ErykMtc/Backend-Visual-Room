@@ -8,7 +8,7 @@ router.route('/')
     .get(roomsController.getAllRooms)
     .post(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), roomsController.createNewRoom)
     .put(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), roomsController.updateRoom)
-    .delete(verifyRoles(ROLES_LIST.Admin), roomsController.deleteRoom);
+    .delete(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), roomsController.deleteRoom);
 
 router.route('/:id')
     .get(roomsController.getRoom);
