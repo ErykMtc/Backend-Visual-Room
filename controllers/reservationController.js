@@ -57,7 +57,7 @@ const deleteReserv = async (req, res) => {
                     userdata.save();
                 }
             })
-    }); //{ _id: req.body.id };
+    });
     res.json(result);
 }
 
@@ -402,12 +402,6 @@ const getUserReserv = async (req, res) => {
 }
 
 const verifyReserv = async (req, res) => {
-// if (!req?.params?.id) return res.status(400).json({ 'message': 'Reserv ID required.' });
-
-    // const reserv = await Reserv.findOne({ _id: req.params.id }).exec();
-    // if (!reserv) {
-    //     return res.status(204).json({ "message": `No reserv matches ID ${req.params.id}.` });
-    // }
 
     const { datestart, dateend, room, studentgroup, user, count, type, userReserv } = req.body;
     if (!datestart || !dateend || !room || !studentgroup || !user || !count || !type) return res.status(400).json({ 'message': 'All params are required.' });

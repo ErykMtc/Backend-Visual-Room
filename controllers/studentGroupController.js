@@ -56,8 +56,7 @@ const deleteStudent = async (req, res) => {
 
     const result = await student.deleteOne().then((result) => {
         Reserv.deleteMany({ studentgroup: result._id }).then((result) => {
-                    // console.log(result);
-                    // console.log(result._id)
+
                     });
             }
         );
@@ -74,7 +73,6 @@ const deleteStudent = async (req, res) => {
         await User.updateMany( {_id: userid}, { $pullAll: {reservation: normalid } } );
         await User.updateMany( {_id: ruser}, { $pullAll: {reservation: normalid } } );
 
-        // console.log("aaa", rrr);
 
     res.json(result);
 }

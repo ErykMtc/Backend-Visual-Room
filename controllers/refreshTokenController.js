@@ -16,7 +16,6 @@ const handleRefreshToken = async (req, res) => {
             if (err || foundUser.username !== decoded.username) return res.sendStatus(403);
             const roles = Object.values(foundUser.roles);
             const userid = foundUser.id;
-            // console.log("aaaaa", userid)
             const accessToken = jwt.sign(
                 {
                     "UserInfo": {
