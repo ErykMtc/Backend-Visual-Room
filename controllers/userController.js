@@ -18,7 +18,7 @@ const deleteUser = async (req, res) => {
     }
 
     const arr = await Reserv.find({user: req.body.id}, '_id room studentgroup userReserv');
-    console.log(arr);
+
 
     const result = await user.deleteOne().then((result) => {
         Reserv.deleteMany({ user: result._id }).then((result) => {
@@ -68,7 +68,7 @@ const updateUserRole = async (req, res) => {
     if (!user) {
         return res.status(204).json({ "message": `No user matches ID ${req.body.id}.` });
     }
-    console.log(req.body.roles);
+
     if (req.body?.roles) user.roles = req.body.roles;
 
     const result = await user.save();

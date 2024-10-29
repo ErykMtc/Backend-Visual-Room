@@ -52,7 +52,7 @@ const deleteRoom = async (req, res) => {
     }
     
     const arr = await Reserv.find({room: req.body.id}, '_id user studentgroup userReserv');
-    console.log(arr);
+
 
     const result = await room.deleteOne().then((result) => {
         Reserv.deleteMany({ room: result._id }).then((result) => {

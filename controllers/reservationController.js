@@ -80,12 +80,8 @@ const createNewReservation = async (req, res) => {
     const { datestart, dateend, room, studentgroup, user, userReserv } = req.body;
     if (!datestart || !dateend || !room || !studentgroup || !user) return res.status(400).json({ 'message': 'All params are required.' });
 
-
-    // zapisuje w strefie czasowej angielskiej
     var startDate = new Date(datestart).toISOString();
     var endDate = new Date(dateend).toISOString();
-
-    console.log(startDate);
 
 
     const isUserFreeTime = await Reserv.find({
@@ -258,20 +254,15 @@ const updateReservation = async (req, res) => {
     var endDate;
 
     if (req.body?.datestart && req.body?.dateend) {
-        // zapisuje w strefie czasowej angielskiej
         startDate = new Date(req.body.datestart).toISOString();
         endDate = new Date(req.body.dateend).toISOString();
     }else if (req.body?.datestart && !req.body?.dateend) {
-        // zapisuje w strefie czasowej angielskiej
         startDate = new Date(req.body.datestart).toISOString();
         endDate = new Date(reserv.dateend).toISOString();
     }else if (!req.body?.datestart && req.body?.dateend) {
-        // zapisuje w strefie czasowej angielskiej
         startDate = new Date(reserv.datestart).toISOString();
         endDate = new Date(req.body.dateend).toISOString();
     }
-    
-    console.log("aaaa", startDate , endDate);
 
 
     const isUserFreeTime = await Reserv.find({
@@ -306,7 +297,6 @@ const updateReservation = async (req, res) => {
             }]
     }).exec();
 
-    console.log(isUserFreeTime)
     if (isUserFreeTime.length > 0) return res.sendStatus(409); //Conflict
 
     const isRoomReserved = await Reserv.find({
@@ -406,8 +396,6 @@ const verifyReserv = async (req, res) => {
     const { datestart, dateend, room, studentgroup, user, count, type, userReserv } = req.body;
     if (!datestart || !dateend || !room || !studentgroup || !user || !count || !type) return res.status(400).json({ 'message': 'All params are required.' });
 
-
-    // zapisuje w strefie czasowej angielskiej
     var startDate = new Date(datestart).toISOString();
     var endDate = new Date(dateend).toISOString();
 

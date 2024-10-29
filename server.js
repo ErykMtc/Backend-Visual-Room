@@ -50,6 +50,5 @@ app.get('*', function(req, res){
 
 
 mongoose.connection.once('open', () => {
-    console.log('jestem polaczony');
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
